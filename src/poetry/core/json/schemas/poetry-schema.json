@@ -123,6 +123,10 @@
               },
               "format": {
                 "$ref": "#/definitions/package-formats"
+              },
+              "destination": {
+                "type": "string",
+                "description": "Path to the destination directory where the included file or directory will be placed."
               }
             }
           }

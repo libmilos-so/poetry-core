@@ -84,7 +84,12 @@ class Module:
 
         for include in includes:
             self._explicit_includes.append(
-                Include(self._path, include["path"], formats=include["format"])
+                Include(
+                    self._path,
+                    include["path"],
+                    formats=include["format"],
+                    destination=include.get("destination"),
+                )
             )
 
     @property

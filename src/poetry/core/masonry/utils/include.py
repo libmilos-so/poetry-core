@@ -21,10 +21,17 @@ class Include:
         - a directory
     """
 
-    def __init__(self, base: Path, include: str, formats: list[str]) -> None:
+    def __init__(
+        self,
+        base: Path,
+        include: str,
+        formats: list[str],
+        destination: str | None = None,
+    ) -> None:
         self._base = base
         self._include = str(include)
         self._formats = formats
+        self._destination = destination
 
         self._elements: list[Path] = sorted(self._base.glob(str(self._include)))
 
@@ -39,6 +46,10 @@ class Include:
     @property
     def formats(self) -> list[str]:
         return self._formats
+
+    @property
+    def destination(self) -> str | None:
+        return self._destination
 
     def is_empty(self) -> bool:
         return len(self._elements) == 0

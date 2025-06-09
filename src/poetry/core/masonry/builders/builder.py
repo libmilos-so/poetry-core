@@ -175,6 +175,9 @@ class Builder:
                 else:
                     target_dir = None
 
+                if include.destination:
+                    target_dir = include.destination
+
                 if file.is_dir():
                     if self.format in formats:
                         for current_file in file.glob("**/*"):
@@ -192,6 +195,7 @@ class Builder:
                                 )
                             ):
                                 to_add.add(include_file)
+
                     continue
 
                 include_file = BuildIncludeFile(

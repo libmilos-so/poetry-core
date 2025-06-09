@@ -41,6 +41,20 @@ def test_package_include_with_nested_dir() -> None:
     ]
 
 
+def test_package_include_with_destination() -> None:
+    pkg_include = PackageInclude(
+        base=with_includes, include="bar", destination="foo", formats=[]
+    )
+
+    assert pkg_include.destination == "foo"
+
+
+def test_package_include_without_destination() -> None:
+    pkg_include = PackageInclude(base=with_includes, include="bar", formats=[])
+
+    assert pkg_include.destination == "bar"
+
+
 def test_package_include_with_no_python_files_in_dir() -> None:
     with pytest.raises(ValueError) as e:
         PackageInclude(base=with_includes, include="not_a_python_pkg", formats=[])
